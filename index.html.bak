@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	</head>
+	<body>
+			<div id="bj">
+				<img src="img/game_bg.jpg" >
+			</div>
+		
+		<div id="df">
+			0
+		</div>
+		<div id="ks">
+			<img src="img/start.png" >
+		</div>
+		<div id="jdt">
+			<img src="img/progress.png" >
+		</div>
+	</body>
+	<script type="text/javascript">
+		var bj=document.getElementById("bj");
+		// var cender=document.getElementById("cender");
+		var fs=document.getElementById("df");
+		var ks=document.getElementById("ks");
+		var bj
+		var ind=0;
+		var aa;
+		var bb;
+		var ui=6;
+		var cc;
+		var trt=0;
+		var yty=false;
+		var m1=[
+			[11,156],
+			[11,222],
+			[26,298],
+			[100,117],
+			[100,192],
+			[107,273],
+			[199,295],
+			[199,213],
+			[181,142],
+		];
+		var yt=['x','h','h','h'];
+		var wee=0;
+		// console.log( m1[2][1] )
+		// aaq();
+		// dow();
+		
+		
+		var wqee=180;
+		var zhang;
+		var jdt=document.getElementById("jdt");
+		var clib;
+		var er=0;
+		var sja=150;
+		var yui=-1;
+		ks.onclick=function(){
+			
+			ks.style.display='none';
+			zhang=setInterval(function(){
+				wqee-=1;
+				jdt.children[0].style.width=wqee+'px';
+				
+				if ( wqee<0 ) {
+					alert("时间到了！ 游戏结束☺");
+					window.history.go(0);
+					clearInterval( zhang );
+				}
+				// console.log( wqee )
+			},sja);
+			
+			setInterval(function(){
+				if ( bj.children.length==1 ) {
+					ind=0;
+					er=random( 0,m1.length-1 );
+					while ( yui==er ){
+						er=random( 0,m1.length-1 );
+					}
+					trt=random( 0,3 );
+					bj.innerHTML+='<div id=\"cender\"></div>'
+					bj.children[1].style.left=m1[er][0]+'px';
+					bj.children[1].clib=true;
+					bj.children[1].style.top=m1[er][1]+'px';
+					// bj.children[1].style.backgroundImage="URL(  )";
+					bj.children[1].style.backgroundImage='url(img/'+yt[trt]+'.png)';
+					yui=er;
+					// console.log( yt[trt] )
+					aaq();
+					
+					// console.log("hahahaahahawhahaha")
+					// dow();
+					// console.log(er)
+				}else if( bj.children.length==2 ){
+					// ind=0;
+					// bta();
+					// yty=true;
+					bta();
+				}
+				
+				// console.log( bj.children.length )
+			},100);
+			
+		}
+		
+		
+		
+		function random( m,n ){
+			return Math.floor( Math.random()*( n-m+1 ) )+m;
+		}
+		
+		
+		
+		function aaq(){
+			// console.log("yi")
+			clearInterval(aa);
+			aa=setInterval(function(){
+				ind--;
+				bj.children[1].style.backgroundPosition=ind*108+'px 0';
+				// console.log(bj.children[1].style.backgroundPosition)
+				if ( ind==-5 ) {
+					dow();
+					clearInterval(aa);
+					
+				}
+			},sja);
+		}
+		function dow(){
+			clearInterval(bb);
+			bb=setInterval(function(){
+				ind++;
+				bj.children[1].style.backgroundPosition=ind*108+'px 0';
+				if ( ind==1 ) {
+					bj.removeChild(bj.children[1]);
+					clearInterval(bb);
+					
+					
+				}
+			},sja);
+		}
+			function bta(){
+				bj.children[1].onclick=function(){
+					if ( bj.children[1].clib==true ) {
+					if ( wqee>180 ) {
+						sja=sja-20;//进度条大于180时加速
+					}
+					console.log( sja )
+					if ( trt==0 ) {
+						// alert("hahaha")
+						wee-=10;
+						// alert("")
+						if ( wee<0 ) {
+							alert("您的分数小于0，游戏结束☺");
+							window.history.go(0);
+						}
+						fs.innerHTML=wee;
+						// console.log( wee )
+					}else if( trt!=0 ){
+						wee+=10;
+						wqee+=10;
+						fs.innerHTML=wee;
+						// console.log( wee )
+					}
+					bj.children[1].clib=false;
+					// console.log( bj.children[1].clib )
+				// clearInterval(bb);	
+				clearInterval(aa);
+				clearInterval(bb);
+				clearInterval(cc);
+				cc=setInterval(function(){
+					ui++;
+					bj.children[1].style.backgroundPosition=ui*-108+'px 0';
+					
+					if ( ui==9 ) {
+						bj.removeChild(bj.lastElementChild);
+						// alert('hahaha');
+						ui=6;
+						clearInterval(cc);
+					}
+				},150);
+				}
+				}
+			}
+			
+		// bta();
+		
+		
+	</script>
+</html>
